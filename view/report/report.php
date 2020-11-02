@@ -27,15 +27,15 @@
 <div class="container">
 <form action="report.php" method="get">
 <div class="row title">
-<div class="col-7"></div>
-<div class="col-3">
-<input class="form-control col-12" name="search" placeholder="SEARCH" value="<?php
+<div  class='col-16'></div>
+<div class="col" style="margin-Top: 70px;">
+<input class="form-control" name="search" placeholder="SEARCH" value="<?php
 if(isset($_GET['search'])){
  $cari = $_GET['search'];
  echo "$cari";}?>">
 </div>
-<div class="col-1">
-<input class="btn btn-secondary col-12" type="submit" value="Search">
+<div class="col" style="margin-Top: 70px; margin-right: 30px; margin-bottom: 30px">
+<input class="btn btn-primary" type="submit" value="Search">
 </div>
 </div>
 
