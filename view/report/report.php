@@ -16,7 +16,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ">
       <a class="nav-link" href="../pelanggan_view/dashboard.php">Pelanggan <span class="sr-only">(current)</span></a>
-      <a class="nav-link" href="dashboard.php">Langganan</a>
+      <a class="nav-link" href="../langganan_view/dashboard.php">Langganan</a>
       <a class="nav-link" href="../paket_view/dashboard.php">Paket</a>
       <a class="nav-link" href="../report/report.php">Report</a>
     </div>
@@ -59,12 +59,12 @@ if(isset($_GET['search'])){
 
 if(isset($_GET['search'])){
   $cari = $_GET['search'];
-  $result = mysqli_query($conn,"SELECT * FROM pelanggan_db, langganan_db, paket_db WHERE id_pelanggan = id_pelanggan AND id_paket = id_paket AND nama_pelanggan like '%".$cari."%'");    
+  $result = mysqli_query($conn,"SELECT * FROM pelanggan_db, langganan_db, paket_db WHERE pelanggan_id = id_pelanggan AND paket_id = id_paket AND nama_pelanggan like '%".$cari."%'");    
  }else{
-  $result = mysqli_query($conn,"SELECT * FROM pelanggan_db, langganan_db, paket_db WHERE id_pelanggan = id_pelanggan AND id_paket = id_paket ORDER BY id_pelanggan ASC");  
+  $result = mysqli_query($conn,"SELECT * FROM pelanggan_db, langganan_db, paket_db WHERE pelanggan_id = id_pelanggan AND paket_id = id_paket ORDER BY id_pelanggan DESC");  
  }
  $no = 1;
- while($row = mysqli_fetch_array($result)){
+ foreach($result as $row){
 
 ?>
 <tr>
@@ -88,7 +88,7 @@ $no++;
 
 
 <?php 
-$query = mysqli_query($conn, "SELECT SUM(price + (price*0.1)) AS total FROM pelanggan_db, langganan_db, paket_db WHERE id_pelanggan = id_pelanggan AND paket_id = id_paket") or die(mysqli_error());
+$query = mysqli_query($conn, "SELECT SUM(price + (price*0.1)) AS total FROM pelanggan_db, langganan_db, paket_db WHERE pelanggan_id = id_pelanggan AND paket_id = id_paket") or die(mysqli_error());
 $fetch = mysqli_fetch_array($query);
 ?>
 
